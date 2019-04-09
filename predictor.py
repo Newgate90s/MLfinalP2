@@ -102,12 +102,12 @@ scatter_matrix(data[['r_strikes', 'b_strikes', 'r_sigstrikes', 'b_sigstrikes' ,
 #for col in cols:
     #X_all[col] = scale(X_all[col])
 
-#X_all.HM1 = X_all.HM1.astype('str')
-#X_all.HM2 = X_all.HM2.astype('str')
-#X_all.HM3 = X_all.HM3.astype('str')
-#X_all.AM1 = X_all.AM1.astype('str')
-#X_all.AM2 = X_all.AM2.astype('str')
-#X_all.AM3 = X_all.AM3.astype('str')
+#X_all.r_last1 = X_all.r_last1.astype('str')
+#X_all.r_last2 = X_all.r_last2.astype('str')
+#X_all.r_last3 = X_all.r_last3.astype('str')
+#X_all.b_last1 = X_all.b_last1.astype('str')
+#X_all.b_last2 = X_all.b_last2.astype('str')
+#X_all.b_last3 = X_all.b_last3.astype('str')
 #***************************THIS PART IS INCOMPLETE, WILL CONTINUE WORKING ON THIS FOR FURTHER STAGES OF PROJECT***************************
 
 
