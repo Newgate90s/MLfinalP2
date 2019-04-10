@@ -126,5 +126,8 @@ def preprocess_features(X):
 X_all = preprocess_features(X_all)
 print("Processed feature columns ({} total features):\n{}".format(len(X_all.columns), list(X_all.columns)))
 
+print("\nFeature values:")
+display(X_all.head())
+
 
 
