@@ -83,32 +83,48 @@ print("\nPurpose of extra feature 1:"
       "To get a image of how much the data values have an effect on each other, helps understand more of what is going on within the program")
 
 print("\n\nExtra feature 2 results:")
+
 #Creating a scatter matrix for specific data values from the data sheet
 scatter_matrix(data[['r_strikes', 'b_strikes', 'r_sigstrikes', 'b_sigstrikes' ,
                      'r_takedowns', 'b_takedowns', 'r_knockdowns', 'b_knockdowns', 'r_subtemps', 'b_subtemps' ,
                      'r_pass', 'b_pass', 'r_rev', 'b_rev']], figsize=(10, 10))
 
+wait = input("\n\n\nPress enter to view Phase 3")
+
+X_all = data.drop(['winner'],1)
+y_all = data['winner']
+
+cols = [['r_strikes', 'b_strikes', 'r_sigstrikes', 'b_sigstrikes' ,
+                     'r_takedowns', 'b_takedowns', 'r_knockdowns', 'b_knockdowns', 'r_subtemps', 'b_subtemps' ,
+                     'r_pass', 'b_pass', 'r_rev', 'b_rev']]
+
+for col in cols:
+    X_all[col] = scale(X_all[col])
+
+X_all.r_last1 = X_all.r_last1.astype('str')
+X_all.r_last2 = X_all.r_last2.astype('str')
+X_all.r_last3 = X_all.r_last3.astype('str')
+X_all.b_last1 = X_all.b_last1.astype('str')
+X_all.b_last2 = X_all.b_last2.astype('str')
+X_all.b_last3 = X_all.b_last3.astype('str')
+
+def preprocess_features(X):
+
+      output = pd.DataFrame(index = X.index)
+
+      for col, col_data in X.iteritems():
 
 
+            if col_data.dtype == object:
+                  col_data = pd.get_dummies(col_data, prefix=col)
 
-#***************************THIS PART IS INCOMPLETE, WILL CONTINUE WORKING ON THIS FOR FURTHER STAGES OF PROJECT***************************
-#X_all = data.drop['winner', 1]
-#y_all = data['winner']
 
-#cols = [['r_strikes', 'b_strikes', 'r_sigstrikes', 'b_sigstrikes' ,
-                     #'r_takedowns', 'b_takedowns', 'r_knockdowns', 'b_knockdowns', 'r_subtemps', 'b_subtemps' ,
-                     #'r_pass', 'b_pass', 'r_rev', 'b_rev']]
+      output = output.join(col_data)
 
-#for col in cols:
-    #X_all[col] = scale(X_all[col])
+      return output
 
-#X_all.r_last1 = X_all.r_last1.astype('str')
-#X_all.r_last2 = X_all.r_last2.astype('str')
-#X_all.r_last3 = X_all.r_last3.astype('str')
-#X_all.b_last1 = X_all.b_last1.astype('str')
-#X_all.b_last2 = X_all.b_last2.astype('str')
-#X_all.b_last3 = X_all.b_last3.astype('str')
-#***************************THIS PART IS INCOMPLETE, WILL CONTINUE WORKING ON THIS FOR FURTHER STAGES OF PROJECT***************************
+X_all = preprocess_features(X_all)
+print("Processed feature columns ({} total features):\n{}".format(len(X_all.columns), list(X_all.columns)))
 
 
 
